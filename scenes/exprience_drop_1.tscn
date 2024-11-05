@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://cnjxqpps8mlkx"]
+
+[ext_resource type="Script" path="res://scripts/exprience_drop_1.gd" id="1_5q54c"]
+[ext_resource type="Texture2D" uid="uid://xkj4dfqjqwl0" path="res://assets/sprites/enemyXpDrop.svg" id="1_oeyt1"]
+[ext_resource type="AudioStream" uid="uid://cpu4a2qmcmjew" path="res://assets/Audio/expSoundCollected.wav" id="3_2obgq"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pkg4a"]
+radius = 3.0
+height = 6.0
+
+[node name="ExprienceDrop1" type="Area2D" groups=["loot"]]
+scale = Vector2(4, 4)
+collision_layer = 8
+script = ExtResource("1_5q54c")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.007, 0.007)
+texture = ExtResource("1_oeyt1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_pkg4a")
+debug_color = Color(0.337255, 0.862745, 0, 0.419608)
+
+[node name="expSoundCollected" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_2obgq")
+volume_db = -25.0
+
+[connection signal="finished" from="expSoundCollected" to="." method="_on_exp_sound_collected_finished"]

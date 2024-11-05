@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dnqoa5ujl7hdk"]
+[gd_scene load_steps=12 format=3 uid="uid://dnqoa5ujl7hdk"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_prnk2"]
 [ext_resource type="Texture2D" uid="uid://b5p4gopmym5tx" path="res://assets/sprites/drawing.svg" id="2_c4pwb"]
@@ -36,6 +36,18 @@ corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_uwjck"]
+radius = 100.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dvnqg"]
+radius = 20.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gtbad"]
+bg_color = Color(0.4, 0.4, 0.4, 0.0470588)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yelfv"]
+bg_color = Color(1, 1, 1, 1)
+
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(579, 298)
 platform_floor_layers = 4294967040
@@ -68,13 +80,70 @@ debug_color = Color(1, 0, 0, 0.423529)
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 unique_name_in_owner = true
-offset_left = -45.0
-offset_top = -63.0
-offset_right = 47.0
-offset_bottom = -36.0
+offset_left = -37.0
+offset_top = -51.0
+offset_right = 39.0
+offset_bottom = -39.0
 theme_override_styles/background = SubResource("StyleBoxFlat_bym8g")
 theme_override_styles/fill = SubResource("StyleBoxFlat_kraw4")
 value = 100.0
 show_percentage = false
 
+[node name="GrapArea" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GrapArea"]
+shape = SubResource("CircleShape2D_uwjck")
+debug_color = Color(1, 0.572549, 0, 0.282353)
+
+[node name="CollectArea" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollectArea"]
+shape = SubResource("CircleShape2D_dvnqg")
+debug_color = Color(0.47009, 0.590492, 9.62615e-07, 0.42)
+
+[node name="Area2D" type="Area2D" parent="CollectArea"]
+
+[node name="GUILayer" type="CanvasLayer" parent="."]
+
+[node name="GUI" type="Control" parent="GUILayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 16.0
+offset_top = 15.0
+offset_right = 1146.0
+offset_bottom = 655.0
+
+[node name="ExperienceBar" type="ProgressBar" parent="GUILayer/GUI"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -13.0
+offset_top = 630.0
+offset_right = 1139.0
+offset_bottom = 644.0
+theme_override_styles/background = SubResource("StyleBoxFlat_gtbad")
+theme_override_styles/fill = SubResource("StyleBoxFlat_yelfv")
+value = 50.0
+show_percentage = false
+
+[node name="Label_level" type="Label" parent="GUILayer/GUI/ExperienceBar"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 4.0
+offset_top = -25.0
+offset_right = 62.0
+offset_bottom = -2.0
+text = "Level: 1"
+
+[node name="SpawnAttack1" type="Node2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(56, 1)
+
 [connection signal="health_depleted" from="." to="." method="_on_health_depleted"]
+[connection signal="area_entered" from="GrapArea" to="." method="_on_grap_area_area_entered"]
+[connection signal="area_entered" from="CollectArea" to="." method="_on_collect_area_area_entered"]

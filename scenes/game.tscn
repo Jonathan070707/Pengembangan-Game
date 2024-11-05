@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://d1502cvemy1e6"]
+[gd_scene load_steps=4 format=3 uid="uid://d1502cvemy1e6"]
 
 [ext_resource type="PackedScene" uid="uid://dnqoa5ujl7hdk" path="res://scenes/player.tscn" id="1_71wst"]
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_l5i3a"]
-[ext_resource type="Texture2D" uid="uid://bkhpieby8larp" path="res://assets/sprites/object1.svg" id="3_2m4lb"]
 
 [sub_resource type="Curve2D" id="Curve2D_x8gey"]
 _data = {
@@ -37,7 +36,6 @@ position = Vector2(-72.0156, -130)
 rotation = -0.00614424
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 1.5
 autostart = true
 
 [node name="GameOver" type="CanvasLayer" parent="."]
@@ -68,10 +66,8 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 91
 text = "GAME OVER"
 
-[node name="Object1" type="Sprite2D" parent="."]
-position = Vector2(934, 209)
-scale = Vector2(0.005, 0.005)
-texture = ExtResource("3_2m4lb")
+[node name="Loot" type="Node2D" parent="." groups=["loot"]]
+position = Vector2(570, 330)
 
 [connection signal="health_depleted" from="Player" to="." method="_on_player_health_depleted"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
