@@ -1,0 +1,80 @@
+[gd_scene load_steps=8 format=3 uid="uid://dnqoa5ujl7hdk"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_prnk2"]
+[ext_resource type="Texture2D" uid="uid://b5p4gopmym5tx" path="res://assets/sprites/drawing.svg" id="2_c4pwb"]
+[ext_resource type="PackedScene" uid="uid://b77jiwkahvoq7" path="res://scenes/attack_1.tscn" id="3_b4bp0"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oodh0"]
+radius = 2600.0
+height = 10000.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p11lo"]
+radius = 15.0
+height = 64.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bym8g"]
+bg_color = Color(0.819608, 0.521569, 0.25098, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 0.32549)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kraw4"]
+bg_color = Color(0, 1, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 1, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="Player" type="CharacterBody2D"]
+position = Vector2(579, 298)
+platform_floor_layers = 4294967040
+script = ExtResource("1_prnk2")
+
+[node name="Drawing" type="Sprite2D" parent="."]
+position = Vector2(-0.999939, 2)
+scale = Vector2(0.005, 0.005)
+texture = ExtResource("2_c4pwb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4)
+scale = Vector2(0.005, 0.005)
+shape = SubResource("CapsuleShape2D_oodh0")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Attack1" parent="." instance=ExtResource("3_b4bp0")]
+position = Vector2(-2, 2)
+
+[node name="Hitbox" type="Area2D" parent="."]
+unique_name_in_owner = true
+light_mask = 0
+visibility_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CapsuleShape2D_p11lo")
+debug_color = Color(1, 0, 0, 0.423529)
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+offset_left = -45.0
+offset_top = -63.0
+offset_right = 47.0
+offset_bottom = -36.0
+theme_override_styles/background = SubResource("StyleBoxFlat_bym8g")
+theme_override_styles/fill = SubResource("StyleBoxFlat_kraw4")
+value = 100.0
+show_percentage = false
+
+[connection signal="health_depleted" from="." to="." method="_on_health_depleted"]

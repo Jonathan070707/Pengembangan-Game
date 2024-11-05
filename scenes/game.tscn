@@ -1,0 +1,78 @@
+[gd_scene load_steps=5 format=3 uid="uid://d1502cvemy1e6"]
+
+[ext_resource type="PackedScene" uid="uid://dnqoa5ujl7hdk" path="res://scenes/player.tscn" id="1_71wst"]
+[ext_resource type="Script" path="res://scripts/game.gd" id="1_l5i3a"]
+[ext_resource type="Texture2D" uid="uid://bkhpieby8larp" path="res://assets/sprites/object1.svg" id="3_2m4lb"]
+
+[sub_resource type="Curve2D" id="Curve2D_x8gey"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -72.0156, -130, 0, 0, 0, 0, 1230, -138, 0, 0, 0, 0, 1228, 731, 0, 0, 0, 0, -64, 718, 0, 0, 0, 0, -71, -128)
+}
+point_count = 5
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_l5i3a")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -30
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+offset_left = -14.0
+offset_top = -19.0
+offset_right = 1163.0
+offset_bottom = 666.0
+color = Color(0.0156863, 0.607843, 1, 1)
+
+[node name="Player" parent="." instance=ExtResource("1_71wst")]
+position = Vector2(569, 329)
+
+[node name="Path2D" type="Path2D" parent="Player"]
+position = Vector2(-545.091, -305)
+scale = Vector2(0.984627, 1)
+curve = SubResource("Curve2D_x8gey")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Player/Path2D"]
+unique_name_in_owner = true
+position = Vector2(-72.0156, -130)
+rotation = -0.00614424
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.5
+autostart = true
+
+[node name="GameOver" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="GameOver"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.513726)
+
+[node name="Label" type="Label" parent="GameOver/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -46.0
+offset_top = -11.5
+offset_right = 46.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 91
+text = "GAME OVER"
+
+[node name="Object1" type="Sprite2D" parent="."]
+position = Vector2(934, 209)
+scale = Vector2(0.005, 0.005)
+texture = ExtResource("3_2m4lb")
+
+[connection signal="health_depleted" from="Player" to="." method="_on_player_health_depleted"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="visibility_changed" from="GameOver" to="." method="_on_game_over_visibility_changed"]
