@@ -6,7 +6,7 @@ var exp1 = preload("res://assets/sprites/enemyXpDrop.svg")
 var exp2 = preload("res://assets/sprites/enemyXpDrop2.svg")
 
 var target = null
-var speed = -1
+var speed = -2
 
 @onready var sprite = $Sprite2D
 @onready var collision = $CollisionShape2D
@@ -21,7 +21,7 @@ func _ready():
 func _physics_process(delta: float) -> void:
 	if target != null:
 		global_position = global_position.move_toward(target.global_position, speed)
-		speed += 2*delta
+		speed += 6*delta
 		
 func collect():
 	expCollectedSound.play()

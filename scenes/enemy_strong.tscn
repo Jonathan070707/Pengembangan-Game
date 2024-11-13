@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://b0yla5luif6h6"]
+
+[ext_resource type="Script" path="res://scenes/enemy_strong.gd" id="1_fcssf"]
+[ext_resource type="Texture2D" uid="uid://bvlefaysrv48p" path="res://assets/sprites/enemy.svg" id="2_lkt2a"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ahngw"]
+radius = 13.0
+height = 50.0
+
+[node name="enemyStrong" type="CharacterBody2D"]
+position = Vector2(574, 297)
+collision_layer = 2
+collision_mask = 2
+platform_floor_layers = 4294967040
+script = ExtResource("1_fcssf")
+
+[node name="BlackOne" type="Sprite2D" parent="."]
+modulate = Color(0, 1, 1, 1)
+self_modulate = Color(0, 1, 1, 1)
+visibility_layer = 3
+position = Vector2(-3, 2)
+scale = Vector2(0.005, 0.005)
+texture = ExtResource("2_lkt2a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, 0)
+shape = SubResource("CapsuleShape2D_ahngw")

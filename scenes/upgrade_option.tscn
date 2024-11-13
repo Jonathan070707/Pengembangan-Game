@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://cthywoguqaiwt"]
+
+[node name="UpgradeOption" type="ColorRect"]
+custom_minimum_size = Vector2(180, 50)
+anchors_preset = -1
+anchor_right = 0.156
+anchor_bottom = 0.077
+offset_right = 0.287994
+offset_bottom = 0.103996
+color = Color(0.652864, 0.652864, 0.652864, 1)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 22.0
+offset_bottom = 22.0
+color = Color(0, 0, 0, 1)
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect"]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 26.0
+offset_bottom = 26.0
