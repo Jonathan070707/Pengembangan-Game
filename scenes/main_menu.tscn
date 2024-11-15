@@ -1,0 +1,76 @@
+[gd_scene load_steps=3 format=3 uid="uid://bmoddlrf6m3pk"]
+
+[ext_resource type="Script" path="res://scenes/main_menu.gd" id="1_vqj3r"]
+[ext_resource type="Texture2D" uid="uid://cr3iqup74ska2" path="res://assets/BGMenu.png" id="2_blupg"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vqj3r")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_left = 400.0
+offset_top = 250.0
+offset_right = 600.0
+offset_bottom = 351.0
+scale = Vector2(2, 2)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Play" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Play
+"
+
+[node name="Option" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Option
+"
+
+[node name="Quit" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Quit
+"
+icon_alignment = 1
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.618
+anchor_top = 0.053
+anchor_right = 0.618
+anchor_bottom = 0.053
+offset_left = -311.936
+offset_top = -15.344
+offset_right = -175.936
+offset_bottom = 7.656
+grow_horizontal = 2
+scale = Vector2(3, 3)
+text = "TURTLE VS TRASH
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="."]
+show_behind_parent = true
+z_as_relative = false
+texture_filter = 4
+texture_repeat = 1
+layout_mode = 0
+offset_right = 6000.0
+offset_bottom = 3000.0
+scale = Vector2(0.19721, 0.203424)
+mouse_filter = 2
+texture = ExtResource("2_blupg")
+stretch_mode = 5
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Option" to="." method="_on_option_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

@@ -3,7 +3,8 @@ extends CharacterBody2D
 signal health_depleted
 
 @onready var player = get_node("/root/Game/Player")
-
+@onready var sprite = $P_Sprite
+var move_speed = 500
 #HEALTH
 var max_health = 10
 var health = max_health
@@ -20,10 +21,18 @@ var collected_experience = 0
 
 func _ready() -> void:
 	set_expbar(experience, calculate_experiencecap ())
+	
+@onready var  P_Sprite= get_node("/root/Game/Player/P_Sprite")
 
 func _physics_process(delta: float) -> void:
-	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	velocity = direction * 600
+	var dir_x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
+	var dir_y = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
+	var move = Vector2(dir_x,dir_y)
+	velocity = move.normalized()*move_speed
+	if dir_x > 0:
+		P_Sprite.flip_h = false
+	elif dir_x < 0:
+		P_Sprite.flip_h = true
 	move_and_slide()
 	
 	const HIT_DAMAAGE = 2
