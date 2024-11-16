@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://dnqoa5ujl7hdk"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_prnk2"]
-[ext_resource type="Texture2D" uid="uid://b5p4gopmym5tx" path="res://assets/sprites/drawing.svg" id="2_c4pwb"]
+[ext_resource type="Texture2D" uid="uid://cpxy0wpbkjgj6" path="res://assets/3 Dude_Monster/Dude_Monster.png" id="2_ujx7a"]
 [ext_resource type="PackedScene" uid="uid://b77jiwkahvoq7" path="res://scenes/attack_1.tscn" id="3_b4bp0"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oodh0"]
@@ -53,13 +53,15 @@ position = Vector2(579, 298)
 platform_floor_layers = 4294967040
 script = ExtResource("1_prnk2")
 
-[node name="Drawing" type="Sprite2D" parent="."]
-position = Vector2(-0.999939, 2)
-scale = Vector2(0.005, 0.005)
-texture = ExtResource("2_c4pwb")
+[node name="P_Sprite" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+texture_filter = 1
+texture_repeat = 1
+scale = Vector2(2, 2)
+texture = ExtResource("2_ujx7a")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 4)
+position = Vector2(0, 8)
 scale = Vector2(0.005, 0.005)
 shape = SubResource("CapsuleShape2D_oodh0")
 
@@ -72,6 +74,7 @@ position = Vector2(-2, 2)
 unique_name_in_owner = true
 light_mask = 0
 visibility_layer = 2
+position = Vector2(0, 11)
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]

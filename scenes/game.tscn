@@ -1,13 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://d1502cvemy1e6"]
+[gd_scene load_steps=7 format=3 uid="uid://d1502cvemy1e6"]
 
 [ext_resource type="PackedScene" uid="uid://dnqoa5ujl7hdk" path="res://scenes/player.tscn" id="1_71wst"]
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_l5i3a"]
+[ext_resource type="AudioStream" uid="uid://clkj7qyj6pt30" path="res://assets/Audio/bgmSound.mp3" id="3_ttqbo"]
+[ext_resource type="AudioStream" uid="uid://1nb00407gx2f" path="res://assets/Audio/gameOverSFX.mp3" id="4_dawk3"]
 
 [sub_resource type="Curve2D" id="Curve2D_x8gey"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -72.0156, -130, 0, 0, 0, 0, 1230, -138, 0, 0, 0, 0, 1228, 731, 0, 0, 0, 0, -64, 718, 0, 0, 0, 0, -71, -128)
 }
 point_count = 5
+
+[sub_resource type="LabelSettings" id="LabelSettings_niuo8"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_l5i3a")
@@ -20,7 +24,7 @@ offset_left = -14.0
 offset_top = -19.0
 offset_right = 1163.0
 offset_bottom = 666.0
-color = Color(0.0156863, 0.607843, 1, 1)
+color = Color(0, 0.674883, 0.604749, 1)
 
 [node name="Player" parent="." instance=ExtResource("1_71wst")]
 position = Vector2(569, 329)
@@ -35,7 +39,21 @@ unique_name_in_owner = true
 position = Vector2(-72.0156, -130)
 rotation = -0.00614424
 
+[node name="Time_Label" type="Label" parent="Player"]
+z_as_relative = false
+texture_filter = 6
+texture_repeat = 1
+offset_left = -60.0
+offset_top = -299.0
+offset_right = -19.0
+offset_bottom = -276.0
+scale = Vector2(3.00315, 2.12)
+text = "00:00"
+label_settings = SubResource("LabelSettings_niuo8")
+horizontal_alignment = 1
+
 [node name="Timer" type="Timer" parent="."]
+process_callback = 0
 autostart = true
 
 [node name="GameOver" type="CanvasLayer" parent="."]
@@ -69,6 +87,46 @@ text = "GAME OVER"
 [node name="Loot" type="Node2D" parent="." groups=["loot"]]
 position = Vector2(570, 330)
 
+[node name="TimeOut" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="TimeOut"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.513726)
+
+[node name="Label" type="Label" parent="TimeOut/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -46.0
+offset_top = -11.5
+offset_right = 46.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 91
+text = "TIME OUT"
+
+[node name="BgmSound" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("3_ttqbo")
+
+[node name="GameOverSfx" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("4_dawk3")
+
+[node name="SoundGameOver" type="Timer" parent="."]
+
 [connection signal="health_depleted" from="Player" to="." method="_on_player_health_depleted"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="visibility_changed" from="GameOver" to="." method="_on_game_over_visibility_changed"]
+[connection signal="visibility_changed" from="TimeOut" to="." method="_on_game_over_visibility_changed"]
+[connection signal="timeout" from="SoundGameOver" to="." method="_on_sound_game_over_timeout"]
