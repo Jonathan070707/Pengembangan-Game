@@ -15,17 +15,67 @@ point_count = 5
 [sub_resource type="LabelSettings" id="LabelSettings_niuo8"]
 
 [node name="Game" type="Node2D"]
+visible = false
 script = ExtResource("1_l5i3a")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -30
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+visible = false
 offset_left = -14.0
 offset_top = -19.0
 offset_right = 1163.0
 offset_bottom = 666.0
 color = Color(0, 0.674883, 0.604749, 1)
+
+[node name="pauseMenu" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_6vacf")
+
+[node name="Panel" type="Panel" parent="CanvasLayer/pauseMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -104.0
+offset_top = -141.0
+offset_right = 117.0
+offset_bottom = 101.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/pauseMenu/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/pauseMenu/Panel/VBoxContainer"]
+layout_mode = 2
+text = "PAUSED"
+
+[node name="ResumeButton" type="Button" parent="CanvasLayer/pauseMenu/Panel/VBoxContainer"]
+layout_mode = 2
+text = "RESUME"
+
+[node name="RestartGameButton" type="Button" parent="CanvasLayer/pauseMenu/Panel/VBoxContainer"]
+layout_mode = 2
+text = "RESTART"
+
+[node name="ExitToMainMenu" type="Button" parent="CanvasLayer/pauseMenu/Panel/VBoxContainer"]
+layout_mode = 2
+text = "MAIN MENU
+"
 
 [node name="Player" parent="." instance=ExtResource("1_71wst")]
 position = Vector2(569, 329)
@@ -116,58 +166,6 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 91
 text = "TIME OUT"
 
-[node name="CanvasLayer2" type="CanvasLayer" parent="."]
-
-[node name="pauseMenu" type="Control" parent="CanvasLayer2" node_paths=PackedStringArray("game")]
-process_mode = 3
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("2_6vacf")
-game = NodePath("../..")
-
-[node name="Panel" type="Panel" parent="CanvasLayer2/pauseMenu"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -104.0
-offset_top = -141.0
-offset_right = 117.0
-offset_bottom = 101.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer2/pauseMenu/Panel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Label" type="Label" parent="CanvasLayer2/pauseMenu/Panel/VBoxContainer"]
-layout_mode = 2
-text = "PAUSED"
-
-[node name="ResumeButton" type="Button" parent="CanvasLayer2/pauseMenu/Panel/VBoxContainer"]
-layout_mode = 2
-text = "RESUME"
-
-[node name="RestartGameButton" type="Button" parent="CanvasLayer2/pauseMenu/Panel/VBoxContainer"]
-layout_mode = 2
-text = "RESTART"
-
-[node name="ExitToMainMenu" type="Button" parent="CanvasLayer2/pauseMenu/Panel/VBoxContainer"]
-layout_mode = 2
-text = "MAIN MENU
-"
-
 [node name="BgmSound" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("3_ttqbo")
@@ -182,7 +180,4 @@ stream = ExtResource("4_dawk3")
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="visibility_changed" from="GameOver" to="." method="_on_game_over_visibility_changed"]
 [connection signal="visibility_changed" from="TimeOut" to="." method="_on_game_over_visibility_changed"]
-[connection signal="pressed" from="CanvasLayer2/pauseMenu/Panel/VBoxContainer/ResumeButton" to="CanvasLayer2/pauseMenu" method="_on_resume_button_pressed"]
-[connection signal="pressed" from="CanvasLayer2/pauseMenu/Panel/VBoxContainer/RestartGameButton" to="CanvasLayer2/pauseMenu" method="_on_restart_game_button_pressed"]
-[connection signal="pressed" from="CanvasLayer2/pauseMenu/Panel/VBoxContainer/ExitToMainMenu" to="CanvasLayer2/pauseMenu" method="_on_exit_to_main_menu_pressed"]
 [connection signal="timeout" from="SoundGameOver" to="." method="_on_sound_game_over_timeout"]

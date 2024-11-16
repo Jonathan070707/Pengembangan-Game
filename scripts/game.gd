@@ -1,5 +1,18 @@
 extends Node2D
 
+class_name Game
+
+#Pause
+signal toggle_name_paused(is_paused : bool) #signal for pause
+
+var game_paused : bool = false:
+	get:
+		return game_paused 
+	set(value):
+		game_paused = value
+		get_tree().paused = game_paused
+		emit_signal("toggle_name_paused", game_paused)
+
 
 var stronger_enemy_timer: Timer  # Timer untuk memunculkan musuh kuat
 # Timer for game duration (10 minutes)
@@ -89,3 +102,8 @@ func end_game() -> void:
 func _on_sound_game_over_timeout() -> void:
 	get_tree().paused = true
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+
+#Pause
+func _input(event: InputEvent) -> void:
+	if(event.is_action_pressed("pause")):
+		game_paused = !game_paused
