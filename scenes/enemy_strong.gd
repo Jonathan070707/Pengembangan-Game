@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var health = 10
+var health = 20
 
 @onready var player = get_node("/root/Game/Player")
 @onready var loot_base = get_tree().get_first_node_in_group("loot")

@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://c6vjufmgi1p68"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_iwuta"]
-[ext_resource type="Texture2D" uid="uid://bvlefaysrv48p" path="res://assets/sprites/enemy.svg" id="1_sn1e8"]
+[ext_resource type="Texture2D" uid="uid://dd56ukqx0u4j8" path="res://assets/sprites/pxArt.png" id="2_nm38e"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ahngw"]
 radius = 13.0
@@ -15,9 +15,11 @@ platform_floor_layers = 4294967040
 script = ExtResource("1_iwuta")
 
 [node name="Enemy" type="Sprite2D" parent="."]
-position = Vector2(-3, 2)
-scale = Vector2(0.005, 0.005)
-texture = ExtResource("1_sn1e8")
+texture_filter = 3
+texture_repeat = 1
+position = Vector2(-1, 1)
+scale = Vector2(0.493141, 0.493141)
+texture = ExtResource("2_nm38e")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-2, 0)

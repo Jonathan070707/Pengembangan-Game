@@ -10,14 +10,15 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(1.00789, 1.08104)
 script = ExtResource("1_vqj3r")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 0
-offset_left = 400.0
-offset_top = 250.0
-offset_right = 600.0
-offset_bottom = 351.0
+offset_left = 97.0
+offset_top = 247.0
+offset_right = 297.0
+offset_bottom = 348.0
 scale = Vector2(2, 2)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
@@ -40,20 +41,21 @@ text = "Quit
 icon_alignment = 1
 
 [node name="Label" type="Label" parent="."]
+texture_filter = 3
+texture_repeat = 1
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.618
 anchor_top = 0.053
 anchor_right = 0.618
 anchor_bottom = 0.053
-offset_left = -311.936
-offset_top = -15.344
-offset_right = -175.936
-offset_bottom = 7.656
+offset_left = -149.936
+offset_top = -142.344
+offset_right = -8.93597
+offset_bottom = -42.344
 grow_horizontal = 2
-scale = Vector2(3, 3)
-text = "TURTLE VS TRASH
-"
+scale = Vector2(3.37868, 3.37868)
+text = "𝐓𝐔𝐑𝐓𝐋𝐄 𝐕𝐒 𝐓𝐑𝐀𝐒𝐇"
 horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
@@ -64,12 +66,15 @@ z_as_relative = false
 texture_filter = 4
 texture_repeat = 1
 layout_mode = 0
-offset_right = 6000.0
-offset_bottom = 3000.0
-scale = Vector2(0.19721, 0.203424)
+offset_left = -12.0
+offset_top = -9.0
+offset_right = 5988.0
+offset_bottom = 2991.0
+scale = Vector2(0.233415, 0.244098)
 mouse_filter = 2
 texture = ExtResource("2_blupg")
-stretch_mode = 5
+expand_mode = 1
+flip_h = true
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Option" to="." method="_on_option_pressed"]

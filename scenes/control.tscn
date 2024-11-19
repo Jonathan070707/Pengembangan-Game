@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://d2svn7lej81ya"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 0
+offset_left = 358.0
+offset_top = 135.0
+offset_right = 483.0
+offset_bottom = 175.0
+scale = Vector2(0.914562, 0.929465)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="HSlider" type="HSlider" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+rounded = true

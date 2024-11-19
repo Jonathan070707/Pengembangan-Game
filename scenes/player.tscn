@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://dnqoa5ujl7hdk"]
+[gd_scene load_steps=14 format=3 uid="uid://dnqoa5ujl7hdk"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_prnk2"]
-[ext_resource type="Texture2D" uid="uid://cpxy0wpbkjgj6" path="res://assets/3 Dude_Monster/Dude_Monster.png" id="2_ujx7a"]
+[ext_resource type="Texture2D" uid="uid://bp3xt3kk1dh3d" path="res://assets/3 Dude_Monster/Turtle.png" id="2_pojl4"]
 [ext_resource type="PackedScene" uid="uid://b77jiwkahvoq7" path="res://scenes/attack_1.tscn" id="3_b4bp0"]
+[ext_resource type="FontFile" uid="uid://bd54w4go6mh5x" path="res://assets/Minecraft.ttf" id="4_8eltt"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oodh0"]
 radius = 2600.0
@@ -10,7 +11,7 @@ height = 10000.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p11lo"]
 radius = 15.0
-height = 64.0
+height = 52.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bym8g"]
 bg_color = Color(0.819608, 0.521569, 0.25098, 0)
@@ -48,6 +49,8 @@ bg_color = Color(0.4, 0.4, 0.4, 0.0470588)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yelfv"]
 bg_color = Color(1, 1, 1, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_72xd2"]
+
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(579, 298)
 platform_floor_layers = 4294967040
@@ -58,10 +61,10 @@ unique_name_in_owner = true
 texture_filter = 1
 texture_repeat = 1
 scale = Vector2(2, 2)
-texture = ExtResource("2_ujx7a")
+texture = ExtResource("2_pojl4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 8)
+position = Vector2(0, -1)
 scale = Vector2(0.005, 0.005)
 shape = SubResource("CapsuleShape2D_oodh0")
 
@@ -78,6 +81,7 @@ position = Vector2(0, 11)
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(-1, -12)
 shape = SubResource("CapsuleShape2D_p11lo")
 debug_color = Color(1, 0, 0, 0.423529)
 
@@ -125,10 +129,10 @@ offset_bottom = 655.0
 [node name="ExperienceBar" type="ProgressBar" parent="GUILayer/GUI"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = -13.0
-offset_top = 630.0
-offset_right = 1139.0
-offset_bottom = 644.0
+offset_left = -18.0
+offset_top = 618.0
+offset_right = 1134.0
+offset_bottom = 632.0
 theme_override_styles/background = SubResource("StyleBoxFlat_gtbad")
 theme_override_styles/fill = SubResource("StyleBoxFlat_yelfv")
 value = 50.0
@@ -141,7 +145,30 @@ offset_left = 4.0
 offset_top = -25.0
 offset_right = 62.0
 offset_bottom = -2.0
-text = "Level: 1"
+text = "Level 1"
+
+[node name="Time_Label" type="Label" parent="GUILayer/GUI"]
+unique_name_in_owner = true
+z_as_relative = false
+texture_filter = 6
+texture_repeat = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.574
+anchor_top = 0.083
+anchor_right = 0.574
+anchor_bottom = 0.083
+offset_left = -60.62
+offset_top = -25.12
+offset_right = -14.62
+offset_bottom = -7.12
+scale = Vector2(3.00315, 2.12)
+theme_override_fonts/font = ExtResource("4_8eltt")
+theme_override_font_sizes/font_size = 20
+text = "00:00"
+label_settings = SubResource("LabelSettings_72xd2")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="SpawnAttack1" type="Node2D" parent="."]
 unique_name_in_owner = true

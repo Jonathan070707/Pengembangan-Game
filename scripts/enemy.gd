@@ -2,10 +2,12 @@ extends CharacterBody2D
 
 var health = 3
 
+
 @onready var player = get_node("/root/Game/Player")
 @onready var loot_base = get_tree().get_first_node_in_group("loot")
 @export var experience = 5
 var exp_gem = preload("res://scenes/exprience_drop_1.tscn")
+
 
 func _physics_process(delta: float) -> void:
 	var direction = global_position.direction_to(player.global_position)

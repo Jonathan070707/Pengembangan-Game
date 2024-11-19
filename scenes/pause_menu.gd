@@ -15,8 +15,6 @@ func _on_game_toggle_game_paused(is_paused : bool):
 func _on_resume_button_pressed() -> void:
 	game.game_paused = false
 
-func _on_restart_game_button_pressed() -> void:
-	get_tree().reload_current_scene()
-
 func _on_exit_to_main_menu_pressed() -> void:
+	game.game_paused = false	
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")

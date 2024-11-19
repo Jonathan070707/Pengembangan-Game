@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dnqoa5ujl7hdk" path="res://scenes/player.tscn" id="1_71wst"]
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_l5i3a"]
 [ext_resource type="Script" path="res://scenes/pause_menu.gd" id="2_6vacf"]
+[ext_resource type="Texture2D" uid="uid://6al1skqr7psc" path="res://assets/BG.png" id="3_1wexe"]
 [ext_resource type="AudioStream" uid="uid://clkj7qyj6pt30" path="res://assets/Audio/bgmSound.mp3" id="3_ttqbo"]
 [ext_resource type="AudioStream" uid="uid://1nb00407gx2f" path="res://assets/Audio/gameOverSFX.mp3" id="4_dawk3"]
 
@@ -12,23 +13,23 @@ _data = {
 }
 point_count = 5
 
-[sub_resource type="LabelSettings" id="LabelSettings_niuo8"]
-
 [node name="Game" type="Node2D"]
 script = ExtResource("1_l5i3a")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = -30
-
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-offset_left = -14.0
-offset_top = -19.0
-offset_right = 1163.0
-offset_bottom = 666.0
-color = Color(0, 0.674883, 0.604749, 1)
-
 [node name="Player" parent="." instance=ExtResource("1_71wst")]
 position = Vector2(569, 329)
+
+[node name="ExperienceBar" parent="Player/GUILayer/GUI" index="0"]
+offset_left = 19.0
+offset_top = 721.0
+offset_right = 1171.0
+offset_bottom = 735.0
+
+[node name="Time_Label" parent="Player/GUILayer/GUI" index="1"]
+offset_left = -28.62
+offset_top = -45.12
+offset_right = 17.38
+offset_bottom = -27.12
 
 [node name="Path2D" type="Path2D" parent="Player"]
 position = Vector2(-545.091, -305)
@@ -40,18 +41,16 @@ unique_name_in_owner = true
 position = Vector2(-72.0156, -130)
 rotation = -0.00614424
 
-[node name="Time_Label" type="Label" parent="Player"]
-z_as_relative = false
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -30
+
+[node name="ColorRect" type="Sprite2D" parent="CanvasLayer"]
 texture_filter = 6
-texture_repeat = 1
-offset_left = -60.0
-offset_top = -299.0
-offset_right = -19.0
-offset_bottom = -276.0
-scale = Vector2(3.00315, 2.12)
-text = "00:00"
-label_settings = SubResource("LabelSettings_niuo8")
-horizontal_alignment = 1
+texture_repeat = 2
+position = Vector2(620, 341)
+texture = ExtResource("3_1wexe")
+region_enabled = true
+region_rect = Rect2(-1.5, -0.5, 3000, 3000)
 
 [node name="Timer" type="Timer" parent="."]
 process_callback = 0
@@ -159,10 +158,6 @@ text = "PAUSED"
 layout_mode = 2
 text = "RESUME"
 
-[node name="RestartGameButton" type="Button" parent="CanvasLayer2/pauseMenu/Panel/VBoxContainer"]
-layout_mode = 2
-text = "RESTART"
-
 [node name="ExitToMainMenu" type="Button" parent="CanvasLayer2/pauseMenu/Panel/VBoxContainer"]
 layout_mode = 2
 text = "MAIN MENU
@@ -183,6 +178,7 @@ stream = ExtResource("4_dawk3")
 [connection signal="visibility_changed" from="GameOver" to="." method="_on_game_over_visibility_changed"]
 [connection signal="visibility_changed" from="TimeOut" to="." method="_on_game_over_visibility_changed"]
 [connection signal="pressed" from="CanvasLayer2/pauseMenu/Panel/VBoxContainer/ResumeButton" to="CanvasLayer2/pauseMenu" method="_on_resume_button_pressed"]
-[connection signal="pressed" from="CanvasLayer2/pauseMenu/Panel/VBoxContainer/RestartGameButton" to="CanvasLayer2/pauseMenu" method="_on_restart_game_button_pressed"]
 [connection signal="pressed" from="CanvasLayer2/pauseMenu/Panel/VBoxContainer/ExitToMainMenu" to="CanvasLayer2/pauseMenu" method="_on_exit_to_main_menu_pressed"]
 [connection signal="timeout" from="SoundGameOver" to="." method="_on_sound_game_over_timeout"]
+
+[editable path="Player"]

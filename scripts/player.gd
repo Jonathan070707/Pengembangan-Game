@@ -4,6 +4,10 @@ signal health_depleted
 
 @onready var player = get_node("/root/Game/Player")
 @onready var sprite = $P_Sprite
+@onready var lblTimer = get_node("%Time_Label")
+#@onready var spriteGun = get_node("/root/Game/Player/P_Sprite")
+
+var time = 0
 var move_speed = 500
 #HEALTH
 var max_health = 10
@@ -23,7 +27,8 @@ func _ready() -> void:
 	set_expbar(experience, calculate_experiencecap ())
 	
 @onready var  P_Sprite= get_node("/root/Game/Player/P_Sprite")
-
+#@onready var G_Sprite = get_node("Player/Attack1/AttackPivot/Weapon1")
+#Player menghadap sesuai arah kontrol
 func _physics_process(delta: float) -> void:
 	var dir_x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	var dir_y = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
@@ -31,6 +36,7 @@ func _physics_process(delta: float) -> void:
 	velocity = move.normalized()*move_speed
 	if dir_x > 0:
 		P_Sprite.flip_h = false
+	
 	elif dir_x < 0:
 		P_Sprite.flip_h = true
 	move_and_slide()
@@ -92,3 +98,13 @@ func set_expbar(set_value = 1, set_max_value = 100):
 	expBar.value = set_value
 	expBar.max_value = set_max_value
 	
+
+func change_time(argtime = 0):
+	time = argtime
+	var get_m = int(time/60.0)
+	var get_s = time % 60
+	if get_m < 10:
+		get_m = str(0,get_m)
+	if get_s < 10:
+		get_s = str(0,get_s)
+	lblTimer.text = str(get_m, ":" , get_s)
