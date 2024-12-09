@@ -1,7 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://bmoddlrf6m3pk"]
+[gd_scene load_steps=9 format=3 uid="uid://bmoddlrf6m3pk"]
 
 [ext_resource type="Script" path="res://scenes/main_menu.gd" id="1_vqj3r"]
-[ext_resource type="Texture2D" uid="uid://cr3iqup74ska2" path="res://assets/BGMenu.png" id="2_blupg"]
+[ext_resource type="Texture2D" uid="uid://cr3iqup74ska2" path="res://assets/Background/BGMenu.png" id="2_blupg"]
+[ext_resource type="Theme" uid="uid://s0saptm3uam4" path="res://play.tres" id="3_hg0ts"]
+[ext_resource type="Theme" uid="uid://deofgyjc56857" path="res://option_button.tres" id="3_l0kp2"]
+[ext_resource type="Theme" uid="uid://bq8xxiy5si26p" path="res://quit_button.tres" id="4_82wwr"]
+[ext_resource type="FontFile" uid="uid://bd54w4go6mh5x" path="res://assets/Background/Minecraft.ttf" id="6_556n2"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4ty6l"]
+texture = ExtResource("2_blupg")
+modulate_color = Color(0.65834, 0.65834, 0.65834, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_v7v3n"]
+font = ExtResource("6_556n2")
+shadow_offset = Vector2(1, 5)
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -13,12 +25,28 @@ grow_vertical = 2
 scale = Vector2(1.00789, 1.08104)
 script = ExtResource("1_vqj3r")
 
+[node name="TextureRect" type="Panel" parent="."]
+show_behind_parent = true
+z_as_relative = false
+texture_filter = 4
+texture_repeat = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -6.28319
+scale = Vector2(0.994342, 0.929596)
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_4ty6l")
+
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 0
-offset_left = 97.0
-offset_top = 247.0
-offset_right = 297.0
-offset_bottom = 348.0
+offset_left = 166.685
+offset_top = 263.635
+offset_right = 294.685
+offset_bottom = 356.635
 scale = Vector2(2, 2)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
@@ -26,55 +54,40 @@ layout_mode = 2
 
 [node name="Play" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Play
-"
+size_flags_vertical = 3
+theme = ExtResource("3_hg0ts")
+text = " "
 
 [node name="Option" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Option
-"
+theme = ExtResource("3_l0kp2")
+text = " "
 
 [node name="Quit" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Quit
-"
+theme = ExtResource("4_82wwr")
+text = " "
 icon_alignment = 1
 
 [node name="Label" type="Label" parent="."]
+process_mode = 3
 texture_filter = 3
 texture_repeat = 1
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.618
-anchor_top = 0.053
-anchor_right = 0.618
-anchor_bottom = 0.053
-offset_left = -149.936
-offset_top = -142.344
-offset_right = -8.93597
-offset_bottom = -42.344
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -203.936
+offset_top = 14.8006
+offset_right = -67.9356
+offset_bottom = 37.8006
 grow_horizontal = 2
-scale = Vector2(3.37868, 3.37868)
-text = "𝐓𝐔𝐑𝐓𝐋𝐄 𝐕𝐒 𝐓𝐑𝐀𝐒𝐇"
+scale = Vector2(3.02016, 3.98629)
+text = "TURTLE VS TRASH"
+label_settings = SubResource("LabelSettings_v7v3n")
 horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
-
-[node name="TextureRect" type="TextureRect" parent="."]
-show_behind_parent = true
-z_as_relative = false
-texture_filter = 4
-texture_repeat = 1
-layout_mode = 0
-offset_left = -12.0
-offset_top = -9.0
-offset_right = 5988.0
-offset_bottom = 2991.0
-scale = Vector2(0.233415, 0.244098)
-mouse_filter = 2
-texture = ExtResource("2_blupg")
-expand_mode = 1
-flip_h = true
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Option" to="." method="_on_option_pressed"]

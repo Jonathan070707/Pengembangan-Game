@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://scenes/enemy_strong.gd" id="1_fcssf"]
 [ext_resource type="Texture2D" uid="uid://dd56ukqx0u4j8" path="res://assets/sprites/pxArt.png" id="2_mbwnm"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_co50g"]
-radius = 29.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cf0gx"]
+size = Vector2(48, 72)
 
 [node name="enemyStrong" type="CharacterBody2D"]
 position = Vector2(574, 297)
@@ -14,13 +14,12 @@ platform_floor_layers = 4294967040
 script = ExtResource("1_fcssf")
 
 [node name="BlackOne" type="Sprite2D" parent="."]
-modulate = Color(0, 1, 1, 1)
-self_modulate = Color(0, 1, 1, 1)
+modulate = Color(0.81, 0.2754, 0.2754, 1)
 visibility_layer = 3
 position = Vector2(-2, -2.86102e-06)
 scale = Vector2(0.905, 0.905)
 texture = ExtResource("2_mbwnm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-2, 0)
-shape = SubResource("CircleShape2D_co50g")
+position = Vector2(-4, 4)
+shape = SubResource("RectangleShape2D_cf0gx")

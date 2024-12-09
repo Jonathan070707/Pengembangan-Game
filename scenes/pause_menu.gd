@@ -16,5 +16,11 @@ func _on_resume_button_pressed() -> void:
 	game.game_paused = false
 
 func _on_exit_to_main_menu_pressed() -> void:
-	game.game_paused = false	
+	game.game_paused = false
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+
+
+func _on_setting_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/setting.tscn")
+	game.game_paused = false
+	
