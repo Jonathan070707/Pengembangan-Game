@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bmoddlrf6m3pk"]
+[gd_scene load_steps=11 format=3 uid="uid://bmoddlrf6m3pk"]
 
 [ext_resource type="Script" path="res://scenes/main_menu.gd" id="1_vqj3r"]
 [ext_resource type="Texture2D" uid="uid://cr3iqup74ska2" path="res://assets/Background/BGMenu.png" id="2_blupg"]
@@ -6,6 +6,8 @@
 [ext_resource type="Theme" uid="uid://deofgyjc56857" path="res://option_button.tres" id="3_l0kp2"]
 [ext_resource type="Theme" uid="uid://bq8xxiy5si26p" path="res://quit_button.tres" id="4_82wwr"]
 [ext_resource type="FontFile" uid="uid://bd54w4go6mh5x" path="res://assets/Background/Minecraft.ttf" id="6_556n2"]
+[ext_resource type="AudioStream" uid="uid://clkj7qyj6pt30" path="res://assets/Audio/bgmSound.mp3" id="7_8hh4j"]
+[ext_resource type="PackedScene" uid="uid://qgwkdqobyau1" path="res://scenes/option.tscn" id="8_npii4"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4ty6l"]
 texture = ExtResource("2_blupg")
@@ -24,6 +26,9 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.00789, 1.08104)
 script = ExtResource("1_vqj3r")
+
+[node name="OptionScene" parent="." instance=ExtResource("8_npii4")]
+layout_mode = 1
 
 [node name="TextureRect" type="Panel" parent="."]
 show_behind_parent = true
@@ -53,17 +58,20 @@ scale = Vector2(2, 2)
 layout_mode = 2
 
 [node name="Play" type="Button" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("3_hg0ts")
 text = " "
 
 [node name="Option" type="Button" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("3_l0kp2")
 text = " "
 
 [node name="Quit" type="Button" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("4_82wwr")
 text = " "
@@ -89,6 +97,11 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
+[node name="BgmSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_8hh4j")
+autoplay = true
+
+[connection signal="focus_entered" from="OptionScene" to="." method="_on_option_scene_focus_entered"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Option" to="." method="_on_option_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

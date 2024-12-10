@@ -1,13 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://qgwkdqobyau1"]
+[gd_scene load_steps=5 format=3 uid="uid://qgwkdqobyau1"]
 
 [ext_resource type="Script" path="res://scenes/option.gd" id="1_6sojq"]
 [ext_resource type="Theme" uid="uid://dd07mdq24hnr8" path="res://volume.tres" id="2_mi8iw"]
-[ext_resource type="Texture2D" uid="uid://cr3iqup74ska2" path="res://assets/Background/BGMenu.png" id="3_r8m5j"]
 [ext_resource type="Theme" uid="uid://bq8xxiy5si26p" path="res://quit_button.tres" id="3_xhiy6"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5ysbm"]
-texture = ExtResource("3_r8m5j")
-modulate_color = Color(0.65834, 0.65834, 0.65834, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_dx4vp"]
 line_spacing = 4.0
@@ -25,22 +20,6 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.07451, 1.0825)
 script = ExtResource("1_6sojq")
-
-[node name="TextureRect2" type="Panel" parent="."]
-show_behind_parent = true
-z_as_relative = false
-texture_filter = 4
-texture_repeat = 1
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-rotation = -6.28319
-scale = Vector2(0.994342, 0.929596)
-mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_5ysbm")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 process_mode = 3
