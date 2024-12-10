@@ -1,17 +1,99 @@
-[gd_scene load_steps=8 format=3 uid="uid://d1502cvemy1e6"]
+[gd_scene load_steps=26 format=3 uid="uid://d1502cvemy1e6"]
 
 [ext_resource type="PackedScene" uid="uid://dnqoa5ujl7hdk" path="res://scenes/player.tscn" id="1_71wst"]
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_l5i3a"]
 [ext_resource type="Script" path="res://scenes/pause_menu.gd" id="2_6vacf"]
-[ext_resource type="Texture2D" uid="uid://6al1skqr7psc" path="res://assets/BG.png" id="3_1wexe"]
-[ext_resource type="AudioStream" uid="uid://clkj7qyj6pt30" path="res://assets/Audio/bgmSound.mp3" id="3_ttqbo"]
+[ext_resource type="Texture2D" uid="uid://6al1skqr7psc" path="res://assets/Background/BG.png" id="3_1wexe"]
 [ext_resource type="AudioStream" uid="uid://1nb00407gx2f" path="res://assets/Audio/gameOverSFX.mp3" id="4_dawk3"]
+[ext_resource type="Script" path="res://scenes/utility/spawn_info.gd" id="4_pwdvp"]
+[ext_resource type="PackedScene" uid="uid://c6vjufmgi1p68" path="res://scenes/enemy.tscn" id="5_514d5"]
+[ext_resource type="Script" path="res://scenes/pressanywhere.gd" id="5_ivao1"]
+[ext_resource type="PackedScene" uid="uid://d1q02727ypb2h" path="res://scenes/enemy2.tscn" id="5_nr8n5"]
+[ext_resource type="Theme" uid="uid://dd07mdq24hnr8" path="res://volume.tres" id="5_w5mlk"]
+[ext_resource type="PackedScene" uid="uid://b0yla5luif6h6" path="res://scenes/enemy_strong.tscn" id="6_ak7xw"]
+[ext_resource type="Theme" uid="uid://dq8jfxxxrji8b" path="res://button.tres" id="6_lejyx"]
+[ext_resource type="Theme" uid="uid://c7xr1m1ktnbel" path="res://quit_mainmenu.tres" id="7_a6auv"]
+[ext_resource type="PackedScene" uid="uid://c8yopbnthq7ib" path="res://scenes/enemy_3.tscn" id="8_ofcjf"]
+[ext_resource type="PackedScene" uid="uid://bxfdjbpko1ml0" path="res://scenes/utility/enemy_spawner.tscn" id="9_3rixe"]
+[ext_resource type="AudioStream" uid="uid://clkj7qyj6pt30" path="res://assets/Audio/bgmSound.mp3" id="11_gh1hc"]
 
 [sub_resource type="Curve2D" id="Curve2D_x8gey"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -72.0156, -130, 0, 0, 0, 0, 1230, -138, 0, 0, 0, 0, 1228, 731, 0, 0, 0, 0, -64, 718, 0, 0, 0, 0, -71, -128)
 }
 point_count = 5
+
+[sub_resource type="Resource" id="Resource_0bkia"]
+script = ExtResource("4_pwdvp")
+time_start = 0
+time_end = 30
+enemy = ExtResource("5_514d5")
+enemy_resource_path = "res://scenes/enemy.tscn"
+enemy_num = 1
+enemy_spawn_delay = 0
+
+[sub_resource type="Resource" id="Resource_x7j30"]
+script = ExtResource("4_pwdvp")
+time_start = 30
+time_end = 210
+enemy = ExtResource("5_514d5")
+enemy_resource_path = "res://scenes/enemy.tscn"
+enemy_num = 2
+enemy_spawn_delay = 0
+
+[sub_resource type="Resource" id="Resource_deud7"]
+script = ExtResource("4_pwdvp")
+time_start = 60
+time_end = 180
+enemy = ExtResource("5_nr8n5")
+enemy_resource_path = "res://scenes/enemy2.tscn"
+enemy_num = 1
+enemy_spawn_delay = 1
+
+[sub_resource type="Resource" id="Resource_37tjr"]
+script = ExtResource("4_pwdvp")
+time_start = 180
+time_end = 210
+enemy = ExtResource("8_ofcjf")
+enemy_resource_path = "res://scenes/enemy_3.tscn"
+enemy_num = 1
+enemy_spawn_delay = 2
+
+[sub_resource type="Resource" id="Resource_x1lmf"]
+script = ExtResource("4_pwdvp")
+time_start = 210
+time_end = 240
+enemy = ExtResource("5_nr8n5")
+enemy_resource_path = "res://scenes/enemy2.tscn"
+enemy_num = 2
+enemy_spawn_delay = 0
+
+[sub_resource type="Resource" id="Resource_bo7we"]
+script = ExtResource("4_pwdvp")
+time_start = 240
+time_end = 270
+enemy = ExtResource("8_ofcjf")
+enemy_resource_path = "res://scenes/enemy_3.tscn"
+enemy_num = 1
+enemy_spawn_delay = 0
+
+[sub_resource type="Resource" id="Resource_74c4q"]
+script = ExtResource("4_pwdvp")
+time_start = 240
+time_end = 240
+enemy = ExtResource("6_ak7xw")
+enemy_resource_path = "res://scenes/enemy_strong.tscn"
+enemy_num = 1
+enemy_spawn_delay = 0
+
+[sub_resource type="Resource" id="Resource_nhbwy"]
+script = ExtResource("4_pwdvp")
+time_start = 270
+time_end = 600
+enemy = ExtResource("5_514d5")
+enemy_resource_path = "res://scenes/enemy.tscn"
+enemy_num = 4
+enemy_spawn_delay = 0
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_l5i3a")
@@ -41,6 +123,9 @@ unique_name_in_owner = true
 position = Vector2(-72.0156, -130)
 rotation = -0.00614424
 
+[node name="Enemy_spawner" parent="." instance=ExtResource("9_3rixe")]
+spawns = Array[ExtResource("4_pwdvp")]([SubResource("Resource_0bkia"), SubResource("Resource_x7j30"), SubResource("Resource_deud7"), SubResource("Resource_37tjr"), SubResource("Resource_x1lmf"), SubResource("Resource_bo7we"), SubResource("Resource_74c4q"), SubResource("Resource_nhbwy")])
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -30
 
@@ -49,75 +134,59 @@ texture_filter = 6
 texture_repeat = 2
 position = Vector2(620, 341)
 texture = ExtResource("3_1wexe")
-region_enabled = true
 region_rect = Rect2(-1.5, -0.5, 3000, 3000)
 
 [node name="Timer" type="Timer" parent="."]
 process_callback = 0
 autostart = true
 
-[node name="GameOver" type="CanvasLayer" parent="."]
-unique_name_in_owner = true
-visible = false
-
-[node name="ColorRect" type="ColorRect" parent="GameOver"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 0.513726)
-
-[node name="Label" type="Label" parent="GameOver/ColorRect"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -46.0
-offset_top = -11.5
-offset_right = 46.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 91
-text = "GAME OVER"
-
 [node name="Loot" type="Node2D" parent="." groups=["loot"]]
 position = Vector2(570, 330)
 
-[node name="TimeOut" type="CanvasLayer" parent="."]
+[node name="End" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
 visible = false
 
-[node name="ColorRect" type="ColorRect" parent="TimeOut"]
+[node name="pressanywhere" type="Control" parent="End"]
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.513726)
+script = ExtResource("5_ivao1")
 
-[node name="Label" type="Label" parent="TimeOut/ColorRect"]
+[node name="Panel" type="Panel" parent="End/pressanywhere"]
+layout_mode = 0
+offset_right = 1147.0
+offset_bottom = 656.0
+scale = Vector2(1.2191, 1.1751)
+
+[node name="Button" type="Button" parent="End/pressanywhere/Panel"]
+layout_mode = 0
+offset_right = 1148.0
+offset_bottom = 653.0
+
+[node name="Label" type="Label" parent="End/pressanywhere/Panel"]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -46.0
-offset_top = -11.5
-offset_right = 46.0
-offset_bottom = 11.5
+offset_left = -99.5
+offset_top = -32.5
+offset_right = 328.5
+offset_bottom = 92.5
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.463443, 0.463443)
 theme_override_font_sizes/font_size = 91
 text = "TIME OUT"
 
-[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+[node name="Pause" type="CanvasLayer" parent="."]
 
-[node name="pauseMenu" type="Control" parent="CanvasLayer2" node_paths=PackedStringArray("game")]
+[node name="pauseMenu" type="Control" parent="Pause" node_paths=PackedStringArray("game")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -128,44 +197,90 @@ grow_vertical = 2
 script = ExtResource("2_6vacf")
 game = NodePath("../..")
 
-[node name="Panel" type="Panel" parent="CanvasLayer2/pauseMenu"]
+[node name="Panel" type="Panel" parent="Pause/pauseMenu"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -104.0
-offset_top = -141.0
-offset_right = 117.0
-offset_bottom = 101.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(1.006, 1.31955)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer2/pauseMenu/Panel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Pause/pauseMenu/Panel"]
 layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -75.0
+offset_top = -100.0
+offset_right = 75.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Pause/pauseMenu/Panel/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("5_w5mlk")
+text = "PAUSED"
+horizontal_alignment = 1
+
+[node name="ResumeButton" type="Button" parent="Pause/pauseMenu/Panel/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("6_lejyx")
+text = " "
+
+[node name="ExitToMainMenu" type="Button" parent="Pause/pauseMenu/Panel/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("7_a6auv")
+text = " "
+
+[node name="GameOver" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+visible = false
+
+[node name="pressanywhere" type="Control" parent="GameOver"]
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("5_ivao1")
 
-[node name="Label" type="Label" parent="CanvasLayer2/pauseMenu/Panel/VBoxContainer"]
-layout_mode = 2
-text = "PAUSED"
+[node name="Panel" type="Panel" parent="GameOver/pressanywhere"]
+layout_mode = 0
+offset_right = 1147.0
+offset_bottom = 656.0
+scale = Vector2(1.2136, 1.17881)
 
-[node name="ResumeButton" type="Button" parent="CanvasLayer2/pauseMenu/Panel/VBoxContainer"]
-layout_mode = 2
-text = "RESUME"
+[node name="Button" type="Button" parent="GameOver/pressanywhere/Panel"]
+layout_mode = 0
+offset_right = 1148.0
+offset_bottom = 653.0
 
-[node name="ExitToMainMenu" type="Button" parent="CanvasLayer2/pauseMenu/Panel/VBoxContainer"]
-layout_mode = 2
-text = "MAIN MENU
-"
-
-[node name="BgmSound" type="AudioStreamPlayer" parent="."]
-unique_name_in_owner = true
-stream = ExtResource("3_ttqbo")
+[node name="Label" type="Label" parent="GameOver/pressanywhere/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -99.5
+offset_top = -32.5
+offset_right = 328.5
+offset_bottom = 92.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.463443, 0.463443)
+theme_override_font_sizes/font_size = 91
+text = "GAME OVER"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="GameOverSfx" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
@@ -173,12 +288,26 @@ stream = ExtResource("4_dawk3")
 
 [node name="SoundGameOver" type="Timer" parent="."]
 
+[node name="BgmSound" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("11_gh1hc")
+autoplay = true
+
+[node name="spawn_stronger" type="Timer" parent="."]
+process_callback = 0
+autostart = true
+
 [connection signal="health_depleted" from="Player" to="." method="_on_player_health_depleted"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="visibility_changed" from="End" to="." method="_on_game_over_visibility_changed"]
+[connection signal="pressed" from="End/pressanywhere/Panel/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="End/pressanywhere/Panel/Button" to="End/pressanywhere" method="_on_button_pressed"]
+[connection signal="pressed" from="Pause/pauseMenu/Panel/VBoxContainer/ResumeButton" to="Pause/pauseMenu" method="_on_resume_button_pressed"]
+[connection signal="pressed" from="Pause/pauseMenu/Panel/VBoxContainer/ExitToMainMenu" to="Pause/pauseMenu" method="_on_exit_to_main_menu_pressed"]
 [connection signal="visibility_changed" from="GameOver" to="." method="_on_game_over_visibility_changed"]
-[connection signal="visibility_changed" from="TimeOut" to="." method="_on_game_over_visibility_changed"]
-[connection signal="pressed" from="CanvasLayer2/pauseMenu/Panel/VBoxContainer/ResumeButton" to="CanvasLayer2/pauseMenu" method="_on_resume_button_pressed"]
-[connection signal="pressed" from="CanvasLayer2/pauseMenu/Panel/VBoxContainer/ExitToMainMenu" to="CanvasLayer2/pauseMenu" method="_on_exit_to_main_menu_pressed"]
+[connection signal="pressed" from="GameOver/pressanywhere/Panel/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="GameOver/pressanywhere/Panel/Button" to="GameOver/pressanywhere" method="_on_button_pressed"]
 [connection signal="timeout" from="SoundGameOver" to="." method="_on_sound_game_over_timeout"]
+[connection signal="timeout" from="spawn_stronger" to="." method="_on_spawn_stronger_timeout"]
 
 [editable path="Player"]

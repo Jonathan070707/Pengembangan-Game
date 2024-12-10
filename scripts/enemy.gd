@@ -5,13 +5,13 @@ var health = 3
 
 @onready var player = get_node("/root/Game/Player")
 @onready var loot_base = get_tree().get_first_node_in_group("loot")
-@export var experience = 5
+@export var experience = 1
 var exp_gem = preload("res://scenes/exprience_drop_1.tscn")
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	var direction = global_position.direction_to(player.global_position)
-	velocity = direction * 300
+	velocity = direction * 230
 	move_and_slide()
 	
 func take_damage():

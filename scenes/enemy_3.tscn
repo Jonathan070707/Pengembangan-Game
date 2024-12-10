@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://c8yopbnthq7ib"]
+
+[ext_resource type="Script" path="res://scenes/enemy_3.gd" id="1_q3hgl"]
+[ext_resource type="Texture2D" uid="uid://c0t438cfu64ne" path="res://assets/sprites/food and kitchenware icons/FOOD.png" id="2_0p20u"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u5d3t"]
+size = Vector2(27, 31)
+
+[node name="enemy3" type="CharacterBody2D"]
+position = Vector2(574, 297)
+collision_layer = 2
+collision_mask = 2
+platform_floor_layers = 4294967040
+script = ExtResource("1_q3hgl")
+
+[node name="Enemy" type="Sprite2D" parent="."]
+texture_filter = 3
+texture_repeat = 1
+position = Vector2(-2.00003, -2.99999)
+scale = Vector2(1.9174, 1.9174)
+texture = ExtResource("2_0p20u")
+region_enabled = true
+region_rect = Rect2(53, 237, 21, 22)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2.5, 1.5)
+shape = SubResource("RectangleShape2D_u5d3t")

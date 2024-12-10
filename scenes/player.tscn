@@ -1,9 +1,9 @@
 [gd_scene load_steps=14 format=3 uid="uid://dnqoa5ujl7hdk"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_prnk2"]
-[ext_resource type="Texture2D" uid="uid://bp3xt3kk1dh3d" path="res://assets/3 Dude_Monster/Turtle.png" id="2_pojl4"]
+[ext_resource type="Texture2D" uid="uid://bp3xt3kk1dh3d" path="res://assets/Char/Turtle.png" id="2_pojl4"]
 [ext_resource type="PackedScene" uid="uid://b77jiwkahvoq7" path="res://scenes/attack_1.tscn" id="3_b4bp0"]
-[ext_resource type="FontFile" uid="uid://bd54w4go6mh5x" path="res://assets/Minecraft.ttf" id="4_8eltt"]
+[ext_resource type="FontFile" uid="uid://bd54w4go6mh5x" path="res://assets/Background/Minecraft.ttf" id="4_8eltt"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oodh0"]
 radius = 2600.0

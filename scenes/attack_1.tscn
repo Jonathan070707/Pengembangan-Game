@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://b77jiwkahvoq7"]
 
 [ext_resource type="Script" path="res://scripts/attack_1.gd" id="1_lwxh1"]
-[ext_resource type="Texture2D" uid="uid://br5gtmydhlcir" path="res://assets/Pack 1/1px/29.png" id="2_xr5fx"]
+[ext_resource type="Texture2D" uid="uid://br5gtmydhlcir" path="res://assets/weapon/Pack 1/1px/29.png" id="2_xr5fx"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dx5xm"]
 radius = 387.032
